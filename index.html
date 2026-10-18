@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facet do Ogarnięcia | Męska Przestrzeń Wsparcia i Rozmowy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0b132b',
+                            slate: '#1c2541',
+                            card: '#151e33',
+                            border: '#2a3656',
+                            gold: '#d4af37',
+                            goldHover: '#e5c158',
+                            goldMuted: 'rgba(212, 175, 55, 0.15)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Pulse Animation for breathing exercise */
+        @keyframes breathIn {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.4); opacity: 0.95; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+        .animate-breath-pulse {
+            animation: breathIn 19s infinite ease-in-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b132b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a3656;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-200 font-sans antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-brand-slate/90 backdrop-blur-md border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Logo & Title -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-gold to-amber-200 flex items-center justify-center text-brand-dark font-extrabold text-xl shadow-lg shadow-brand-gold/10 group-hover:scale-105 transition-transform">
+                    F
+                </div>
+                <div>
+                    <span class="text-lg font-bold text-white tracking-wide block leading-none">Facet do Ogarnięcia</span>
+                    <span class="text-[11px] text-brand-gold font-medium">Męska Strefa Wsparcia</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="#tematy" class="text-slate-300 hover:text-brand-gold transition-colors">Obszary Pomocy</a>
+                <a href="#czat" class="text-slate-300 hover:text-brand-gold transition-colors">Asystent Rozmowy</a>
+                <a href="#oddech" class="text-slate-300 hover:text-brand-gold transition-colors">Strefa Oddechu</a>
+                <a href="#dziennik" class="text-slate-300 hover:text-brand-gold transition-colors">Dziennik "Wylej Serce"</a>
+                <a href="#kregi" class="text-slate-300 hover:text-brand-gold transition-colors">Kręgi Mężczyzn</a>
+                <a href="#pomoc" class="bg-brand-goldMuted text-brand-gold border border-brand-gold/30 hover:bg-brand-gold hover:text-brand-dark px-4 py-2 rounded-xl transition-all duration-200 font-semibold text-xs uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-phone-flip"></i>Pilna Pomoc
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2" aria-label="Otwórz menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-slate border-b border-brand-border px-4 pt-2 pb-6 space-y-3">
+            <a href="#tematy" class="block text-slate-300 hover:text-brand-gold py-2">Obszary Pomocy</a>
+            <a href="#czat" class="block text-slate-300 hover:text-brand-gold py-2">Asystent Rozmowy</a>
+            <a href="#oddech" class="block text-slate-300 hover:text-brand-gold py-2">Strefa Oddechu</a>
+            <a href="#dziennik" class="block text-slate-300 hover:text-brand-gold py-2">Dziennik "Wylej Serce"</a>
+            <a href="#kregi" class="block text-slate-300 hover:text-brand-gold py-2">Kręgi Mężczyzn</a>
+            <a href="#pomoc" class="block text-center bg-brand-gold text-brand-dark font-bold py-2.5 rounded-xl mt-2">
+                <i class="fa-solid fa-phone-flip mr-2"></i>Pilna Pomoc Telefon
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section class="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-b from-brand-slate via-brand-dark to-brand-dark border-b border-brand-border">
+            <!-- Background Visual Glows -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 left-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-card border border-brand-border text-xs font-medium text-brand-gold mb-6 backdrop-blur-sm shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                    Bezpieczna, bezpłatna i w 100% anonimowa przestrzeń
+                </div>
+                
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-none mb-6">
+                    Facet do Ogarnięcia
+                </h1>
+
+                <p class="text-xl sm:text-2xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-brand-gold to-amber-100 max-w-3xl mx-auto mb-6">
+                    "Masz prawo nie wiedzieć. Masz prawo czuć. Zrób pierwszy krok."
+                </p>
+
+                <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                    Kryzys w relacji, rozstanie, przytłaczająca samotność czy presja otoczenia? Nie musisz ze wszystkim radzić sobie w pojedynkę. Prosić o wsparcie to dowód odwagi, a nie słabości.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#czat" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-bold rounded-xl shadow-lg shadow-brand-gold/20 transition-all duration-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-comments"></i>
+                        Porozmawiaj z Asystentem
+                    </a>
+                    <a href="#oddech" class="w-full sm:w-auto px-8 py-4 bg-brand-card hover:bg-brand-slate text-slate-200 border border-brand-border font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wind text-brand-gold"></i>
+                        Złap Oddech (Ćwiczenie)
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-brand-border/60 text-slate-400 text-xs sm:text-sm">
+                    <div class="flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-shield text-brand-gold"></i>
+                        <span>Zero rejestracji</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-lock text-brand-gold"></i>
+                        <span>Prywatność urządzeniu</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-handshake-angle text-brand-gold"></i>
+                        <span>Brak oceniania</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-users text-brand-gold"></i>
+                        <span>Męska Społeczność</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KARTY TEMATYCZNE -->
+        <section id="tematy" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-gold text-xs font-semibold uppercase tracking-widest">W czym możemy Ci pomóc?</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Z czym przychodzisz dzisiaj?</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                    Wybierz obszar, który najbardziej opisuje Twój obecny stan. Żaden problem nie jest błahy.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-gold/60 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 shadow-xl group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-goldMuted border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-5 group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
+                        <i class="fa-solid fa-heart-crack"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Rozstanie i złamane serce</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Koniec relacji to paraliżujący ból i odrzucenie. Pomożemy Ci przetrwać etap szoku i bezpiecznie poukładać emocje po stracie.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 border-t border-brand-border pt-4">
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Jak opanować chęć kontaktu</li>
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Odbudowa własnej tożsamości</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-gold/60 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 shadow-xl group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-goldMuted border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-5 group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
+                        <i class="fa-solid fa-comments-cross"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Kryzys w relacji i brak zrozumienia</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Ciągłe spięcia, ciche dni lub uczucie, że mówicie w różnych językach. Dowiedz się, jak komunikować potrzeby bez agresji.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 border-t border-brand-border pt-4">
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Przełamywanie cichych dni</li>
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Zrozumienie perspektywy drugiej strony</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-gold/60 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 shadow-xl group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-goldMuted border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-5 group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
+                        <i class="fa-solid fa-user-group text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Samotność i poczucie przytłoczenia</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Można być otoczonym ludźmi i czuć się całkowicie samotnym. Pomagamy budować Autentyczne relacje i wychodzić z izolacji.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 border-t border-brand-border pt-4">
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Radzenie sobie ze pustką</li>
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Szukanie męskiego środowiska</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-brand-card border border-brand-border hover:border-brand-gold/60 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 shadow-xl group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-goldMuted border border-brand-gold/30 text-brand-gold flex items-center justify-center text-xl mb-5 group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Stres, presja i wypalenie</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Ciągły brak sił, odpowiedzialność finansowa, praca, dom. Dowiedz się, jak wyznaczać granice i regenerować układy nerwowe.
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 border-t border-brand-border pt-4">
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Redukcja poziomu kortyzolu</li>
+                        <li><i class="fa-solid fa-check text-brand-gold mr-2"></i>Higiena psychiczna faceta</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- STREFA ODDECHU (TRENING 4-7-8) -->
+        <section id="oddech" class="py-16 bg-brand-slate/50 border-y border-brand-border">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-brand-gold text-xs font-semibold uppercase tracking-widest">Szybka ulga w stresie</span>
+                <h2 class="text-2xl sm:text-4xl font-bold text-white mt-1 mb-2">Strefa Oddechu (Metoda 4-7-8)</h2>
+                <p class="text-slate-300 text-sm max-w-xl mx-auto mb-8">
+                    To sprawdzone ćwiczenie biologicznie uspokaja układ nerwowy.
+                    <br/><span class="text-slate-400 text-xs">Wdech przez nos (4s) &bull; Wstrzymanie (7s) &bull; Spokojny wydech (8s)</span>
+                </p>
+                
+                <!-- Breathing Visualizer -->
+                <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto flex items-center justify-center my-6">
+                    <div id="breath-circle" class="absolute inset-0 rounded-full bg-brand-gold/20 border-2 border-brand-gold animate-breath-pulse"></div>
+                    <div class="relative z-10 flex flex-col items-center">
+                        <span id="breath-phase" class="font-bold text-white text-lg sm:text-xl tracking-wide">WDECH</span>
+                        <span id="breath-timer" class="text-3xl sm:text-4xl font-black text-brand-gold mt-1">4</span>
+                    </div>
+                </div>
+
+                <p id="breath-hint" class="text-xs text-slate-400 max-w-md mx-auto">
+                    Bierz powolny, głęboki wdech do brzucha...
+                </p>
+            </div>
+        </section>
+
+        <!-- INTERAKTYWNE MODUŁY: CZAT ASYSTENT & DZIENNIK -->
+        <section id="czat" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- ASYSTENT ROZMOWY (7 Cols) -->
+                <div class="lg:col-span-7 bg-brand-card border border-brand-border rounded-2xl flex flex-col h-[620px] shadow-2xl overflow-hidden">
+                    <!-- Chat Header -->
+                    <div class="p-4 bg-brand-slate border-b border-brand-border flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <div class="w-10 h-10 rounded-xl bg-brand-goldMuted border border-brand-gold/40 text-brand-gold flex items-center justify-center">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <span class="w-3 h-3 bg-emerald-500 border-2 border-brand-card rounded-full absolute bottom-0 right-0"></span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold text-white">Asystent "Facet do Ogarnięcia"</h3>
+                                <p class="text-xs text-slate-400">Interaktywne wsparcie w sytuacjach kryzysowych</p>
+                            </div>
+                        </div>
+                        <span class="text-[11px] bg-brand-dark text-slate-400 px-3 py-1 rounded-full border border-brand-border font-mono">
+                            Dyskretny czat
+                        </span>
+                    </div>
+
+                    <!-- Message Container -->
+                    <div id="chat-box" class="flex-grow p-4 overflow-y-auto space-y-4 text-sm">
+                        <div class="flex gap-3 max-w-[85%]">
+                            <div class="w-8 h-8 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs shrink-0 mt-1">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="bg-brand-slate text-slate-200 p-4 rounded-2xl rounded-tl-none border border-brand-border leading-relaxed text-sm shadow-sm">
+                                Siemanko. Jesteś w bezpiecznym miejscu. Nie ma tu głupich pytań ani oceniania. 
+                                <br/><br/>
+                                Co się dzisiaj u Ciebie dzieje? Rozstanie, ciężka sytuacja w relacji, a może po prostu czujesz, że przerosła Cię codzienność? Napisz mi parę słów.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Prompts -->
+                    <div class="px-4 py-2 border-t border-brand-border bg-brand-dark/50 flex gap-2 overflow-x-auto text-xs whitespace-nowrap">
+                        <button onclick="sendQuickMessage('Ciężko przechodzę rozstanie i ciągle myśli wracają.')" class="bg-brand-slate hover:bg-brand-border text-slate-300 px-3 py-1.5 rounded-lg border border-brand-border transition-colors">
+                            💔 Przechodzę rozstanie
+                        </button>
+                        <button onclick="sendQuickMessage('Czuję ogromną samotność i brak sił do wszystkiego.')" class="bg-brand-slate hover:bg-brand-border text-slate-300 px-3 py-1.5 rounded-lg border border-brand-border transition-colors">
+                            🌧️ Przytłacza mnie samotność
+                        </button>
+                        <button onclick="sendQuickMessage('Mam ciągłe kłótnie w związku i nie wiemy jak gadać.')" class="bg-brand-slate hover:bg-brand-border text-slate-300 px-3 py-1.5 rounded-lg border border-brand-border transition-colors">
+                            🔥 Kryzys w relacji
+                        </button>
+                    </div>
+
+                    <!-- Input Form -->
+                    <form id="chat-form" class="p-3 bg-brand-slate/60 border-t border-brand-border flex gap-2">
+                        <input type="text" id="chat-input" placeholder="Wpisz szczerze, co u Ciebie..." class="flex-grow bg-brand-dark text-white placeholder-slate-500 text-sm rounded-xl px-4 py-3 border border-brand-border focus:outline-none focus:border-brand-gold transition-colors">
+                        <button type="submit" class="bg-brand-gold hover:bg-brand-goldHover text-brand-dark px-5 py-3 rounded-xl font-bold transition-colors shrink-0">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- DZIENNIK "WYLEJ SERCE" (5 Cols) -->
+                <div id="dziennik" class="lg:col-span-5 bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col justify-between shadow-2xl">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-pen-nib text-brand-gold text-xl"></i>
+                                <h3 class="text-xl font-bold text-white">Dziennik "Wylej Serce"</h3>
+                            </div>
+                            <span class="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 px-2.5 py-1 rounded-full font-mono">
+                                <i class="fa-solid fa-lock mr-1"></i>Prywatny Zapis
+                            </span>
+                        </div>
+                        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+                            Wyrzuć z siebie trudne myśli. Przelanie emocji na tekst pomaga odciążyć głowę. Twój wpis trafia wyłącznie do pamięci przeglądarki na tym urządzeniu.
+                        </p>
+
+                        <textarea id="journal-input" rows="7" placeholder="Napisz szczerze: co Cię boli, co zepsuło Ci dzień, czym się martwisz..." class="w-full bg-brand-dark text-slate-200 placeholder-slate-600 text-sm rounded-xl p-4 border border-brand-border focus:outline-none focus:border-brand-gold transition-colors resize-none mb-4"></textarea>
+
+                        <div class="flex items-center justify-between gap-3">
+                            <button id="save-journal-btn" class="bg-brand-gold hover:bg-brand-goldHover text-brand-dark px-5 py-2.5 rounded-xl text-sm font-bold transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                Zapisz wpis
+                            </button>
+                            <button id="clear-journal-btn" class="text-slate-400 hover:text-rose-400 text-xs transition-colors">
+                                Usuń historię
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Entries List -->
+                    <div class="mt-6 border-t border-brand-border pt-4">
+                        <h4 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Twoje wpisy:</h4>
+                        <div id="journal-entries" class="space-y-2 max-h-36 overflow-y-auto text-xs text-slate-300 pr-1">
+                            <p class="text-slate-500 italic" id="empty-journal-msg">Brak zapisanych wpisów.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- KRĘGI MĘŻCZYZN -->
+        <section id="kregi" class="py-16 bg-brand-slate/40 border-y border-brand-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-goldMuted border border-brand-gold/30 text-xs font-medium text-brand-gold mb-4">
+                            Spotkania Kameralne
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+                            Męskie Kręgi Wsparcia <br/><span class="text-brand-gold">(Online & Stacjonarnie)</span>
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Męski Krąg to mała grupa (5-8 facetów), w której bez oceny i doradzania na siłę dzielimy się tym, co u nas słychać. Otrzymasz zrozumienie od ludzi, którzy przechodzą przez podobne wyzwania.
+                        </p>
+
+                        <div class="space-y-4 text-sm text-slate-300 mb-8">
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-brand-goldMuted text-brand-gold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-shield"></i>
+                                </div>
+                                <span><strong>Poufność:</strong> Wszystko, o czym rozmawiamy, zostaje w grupie.</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-6 h-6 rounded-full bg-brand-goldMuted text-brand-gold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-user-check"></i>
+                                </div>
+                                <span><strong>Akceptacja:</strong> Mówisz tyle, ile chcesz. Możesz na początku tylko słuchać.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <div class="bg-brand-card border border-brand-border p-6 sm:p-8 rounded-2xl shadow-2xl">
+                        <h3 class="text-xl font-bold text-white mb-2">Zgłoś chęć udziału w kręgu</h3>
+                        <p class="text-slate-400 text-xs mb-6">Skontaktujemy się z Tobą przed najbliższym terminem.</p>
+
+                        <form id="circle-form" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Imię lub Nick</label>
+                                <input type="text" required placeholder="np. Piotrek" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Adres e-mail (do wysłania linku)</label>
+                                <input type="email" required placeholder="np. piotr@kontakt.pl" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-slate-300 mb-1">Preferowana forma</label>
+                                <select class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-brand-gold">
+                                    <option>Online (Spotkania wideo Google Meet)</option>
+                                    <option>Stacjonarnie (Warszawa / Kraków / Gdańsk / Wrocław)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-bold py-3 rounded-xl transition-colors text-sm shadow-lg shadow-brand-gold/10">
+                                Wyślij zgłoszenie
+                            </button>
+                            <p id="circle-success-msg" class="hidden text-xs text-emerald-400 text-center mt-2 font-medium">
+                                <i class="fa-solid fa-circle-check mr-1"></i> Zgłoszenie przyjęte! Ozwziemy się wkrótce.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUMERY TELEFONÓW ZAUFANIA -->
+        <section id="pomoc" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-rose-400 font-semibold text-xs tracking-wider uppercase">Bezpłatne & Anonimowe</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-1 mb-4">Ważne numery wsparcia w Polsce</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                    Jeśli czujesz, że potrzebujesz natychmiastowej rozmowy ze specjalistą – zadzwoń. Te infolinie są bezpłatne.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Phone 1 -->
+                <div class="bg-brand-card border border-brand-border hover:border-rose-500/40 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <span class="bg-rose-500/10 text-rose-400 text-xs font-bold px-2.5 py-1 rounded-md border border-rose-500/20 mb-3 inline-block">
+                            Dla Mężczyzn
+                        </span>
+                        <h3 class="text-lg font-bold text-white mb-2">Telefon Zaufania dla Mężczyzn</h3>
+                        <p class="text-slate-400 text-xs mb-6">Dedykowana linia dla facetów w kryzysie emocjonalnym i relacyjnym.</p>
+                    </div>
+                    <a href="tel:608271402" class="block w-full text-center bg-brand-slate hover:bg-brand-border text-white font-bold py-3 rounded-xl border border-brand-border transition-colors text-base">
+                        <i class="fa-solid fa-phone mr-2 text-rose-400"></i>608 271 402
+                    </a>
+                </div>
+
+                <!-- Phone 2 -->
+                <div class="bg-brand-card border border-brand-border hover:border-amber-500/40 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <span class="bg-amber-500/10 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-500/20 mb-3 inline-block">
+                            Całodobowy Kryzysowy
+                        </span>
+                        <h3 class="text-lg font-bold text-white mb-2">Kryzysowy Telefon Zaufania</h3>
+                        <p class="text-slate-400 text-xs mb-6">Wsparcie psychologiczne dla osób przeżywających trudności życiowe.</p>
+                    </div>
+                    <a href="tel:116123" class="block w-full text-center bg-brand-slate hover:bg-brand-border text-white font-bold py-3 rounded-xl border border-brand-border transition-colors text-base">
+                        <i class="fa-solid fa-phone mr-2 text-amber-400"></i>116 123
+                    </a>
+                </div>
+
+                <!-- Phone 3 -->
+                <div class="bg-brand-card border border-brand-border hover:border-blue-500/40 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-2.5 py-1 rounded-md border border-blue-500/20 mb-3 inline-block">
+                            Centrum Wsparcia
+                        </span>
+                        <h3 class="text-lg font-bold text-white mb-2">Centrum Wsparcia Psychicznego</h3>
+                        <p class="text-slate-400 text-xs mb-6">Bezpłatna pomoc dla osób w stanie kryzysu psychicznego (24/7).</p>
+                    </div>
+                    <a href="tel:800702222" class="block w-full text-center bg-brand-slate hover:bg-brand-border text-white font-bold py-3 rounded-xl border border-brand-border transition-colors text-base">
+                        <i class="fa-solid fa-phone mr-2 text-blue-400"></i>800 70 22 22
+                    </a>
+                </div>
+            </div>
+
+            <!-- Emergency Box -->
+            <div class="mt-8 bg-rose-950/30 border border-rose-800/50 rounded-xl p-4 text-center text-xs sm:text-sm text-rose-200">
+                <i class="fa-solid fa-triangle-exclamation text-rose-400 mr-2 text-base"></i>
+                <strong>W bezpośrednim zagrożeniu życia:</strong> Zadzwoń natychmiast pod numer alarmowy <a href="tel:112" class="underline font-bold text-white">112</a>.
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-slate border-t border-brand-border py-8 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-brand-gold flex items-center justify-center text-brand-dark font-black text-xs">F</div>
+                <span class="text-slate-200 font-bold">Facet do Ogarnięcia</span>
+            </div>
+            <p class="text-center md:text-left text-slate-400">
+                Projekt społeczno-wspierający. Żadne Twoje prywatne wiadomości ani wpisy z dziennika nie trafiają na zewnętrzne serwery.
+            </p>
+            <p>&copy; 2026 Facet do Ogarnięcia. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT CODE -->
+    <script>
+        // --- MOBILE MENU TOGGLE ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- STREFA ODDECHU 4-7-8 TIMER LOGIC ---
+        const breathPhase = document.getElementById('breath-phase');
+        const breathTimer = document.getElementById('breath-timer');
+        const breathHint = document.getElementById('breath-hint');
+
+        let breathSeconds = 4;
+        let currentPhase = 0; // 0: Inhale (4s), 1: Hold (7s), 2: Exhale (8s)
+
+        const phases = [
+            { name: 'WDECH', duration: 4, hint: 'Bierz powolny, głęboki wdech przez nos...' },
+            { name: 'ZATRZYMAJ', duration: 7, hint: 'Zatrzymaj powietrze w płucach...' },
+            { name: 'WYDECH', duration: 8, hint: 'Wypuszczaj powietrze ustami...' }
+        ];
+
+        setInterval(() => {
+            breathSeconds--;
+            if (breathSeconds <= 0) {
+                currentPhase = (currentPhase + 1) % phases.length;
+                breathSeconds = phases[currentPhase].duration;
+                breathPhase.textContent = phases[currentPhase].name;
+                breathHint.textContent = phases[currentPhase].hint;
+            }
+            breathTimer.textContent = breathSeconds;
+        }, 1000);
+
+        // --- ASYSTENT CHAT SIMULATOR LOGIC ---
+        const chatBox = document.getElementById('chat-box');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+
+        const botReplies = {
+            rozstanie: "Rozstanie to potężny cios i proces żałoby. Najważniejsze zasady na teraz: 1) Nie pisz i nie sprawdzaj jej profili w internecie. 2) Daj sobie prawo do czucia bólu bez uciekania w używki. 3) Skup się na małych krokach dnia codziennego.",
+            samotnosc: "Poczucie osamotnienia potrafi przytłoczyć. Pamiętaj jednak, że bycie samemu w tym momencie nie definiuje Twojej wartości. Czy próbowałeś dołączyć do naszego męskiego kręgu lub zająć się sportem/pasją w grupie?",
+            kryzys: "Kiedy w relacji brakuje porozumienia, emocje często biorą górę. Kluczem jest rozmawianie z pozycji 'ja czuję' zamiast 'ty zawsze robisz'. Spróbuj ochłonąć przed trudną rozmową.",
+            default: "Dzięki, że napisałeś. Wyrzucenie z siebie myśli to pierwszy i najważniejszy krok, żeby to 'ogarnąć'. Co w tej sytuacji najbardziej Cię niepokoi?"
+        };
+
+        function addChatMessage(sender, text) {
+            const div = document.createElement('div');
+            if (sender === 'user') {
+                div.className = 'flex justify-end gap-3 max-w-[85%] ml-auto';
+                div.innerHTML = `
+                    <div class="bg-brand-gold text-brand-dark font-medium p-3.5 rounded-2xl rounded-tr-none text-sm shadow-md leading-relaxed">
+                        ${escapeHtml(text)}
+                    </div>
+                `;
+            } else {
+                div.className = 'flex gap-3 max-w-[85%]';
+                div.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-xs shrink-0 mt-1">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="bg-brand-slate text-slate-200 p-3.5 rounded-2xl rounded-tl-none border border-brand-border leading-relaxed text-sm shadow-sm">
+                        ${text}
+                    </div>
+                `;
+            }
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const el = document.createElement('div');
+            el.textContent = text;
+            return el.innerHTML;
+        }
+
+        function processUserMessage(text) {
+            if (!text.trim()) return;
+            addChatMessage('user', text);
+            chatInput.value = '';
+
+            setTimeout(() => {
+                const lower = text.toLowerCase();
+                let reply = botReplies.default;
+
+                if (lower.includes('rozsta') || lower.includes('dziewczyn') || lower.includes('był') || lower.includes('żon')) {
+                    reply = botReplies.rozstanie;
+                } else if (lower.includes('samotn') || lower.includes('izolacj') || lower.includes('sam')) {
+                    reply = botReplies.samotnosc;
+                } else if (lower.includes('kłót') || lower.includes('kryzys') || lower.includes('relacj') || lower.includes('związ')) {
+                    reply = botReplies.kryzys;
+                }
+
+                addChatMessage('bot', reply);
+            }, 700);
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            processUserMessage(chatInput.value);
+        });
+
+        function sendQuickMessage(msg) {
+            processUserMessage(msg);
+        }
+
+        // --- LOCALSTORAGE DZIENNIK LOGIC ---
+        const journalInput = document.getElementById('journal-input');
+        const saveJournalBtn = document.getElementById('save-journal-btn');
+        const clearJournalBtn = document.getElementById('clear-journal-btn');
+        const journalEntriesContainer = document.getElementById('journal-entries');
+        const emptyJournalMsg = document.getElementById('empty-journal-msg');
+
+        function renderJournalEntries() {
+            const entries = JSON.parse(localStorage.getItem('facet_ogarniecie_journal') || '[]');
+            journalEntriesContainer.innerHTML = '';
+
+            if (entries.length === 0) {
+                journalEntriesContainer.appendChild(emptyJournalMsg);
+                return;
+            }
+
+            entries.forEach((entry, idx) => {
+                const item = document.createElement('div');
+                item.className = 'bg-brand-dark p-3 rounded-lg border border-brand-border space-y-1 relative';
+                item.innerHTML = `
+                    <div class="flex items-center justify-between text-[10px] text-brand-gold font-mono">
+                        <span>${entry.date}</span>
+                        <button onclick="removeJournalEntry(${idx})" class="text-slate-500 hover:text-rose-400 transition-colors">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    <p class="text-slate-300 text-xs whitespace-pre-wrap">${escapeHtml(entry.content)}</p>
+                `;
+                journalEntriesContainer.appendChild(item);
+            });
+        }
+
+        saveJournalBtn.addEventListener('click', () => {
+            const val = journalInput.value.trim();
+            if (!val) return;
+
+            const entries = JSON.parse(localStorage.getItem('facet_ogarniecie_journal') || '[]');
+            entries.unshift({
+                content: val,
+                date: new Date().toLocaleString('pl-PL', { dateStyle: 'short', timeStyle: 'short' })
+            });
+
+            localStorage.setItem('facet_ogarniecie_journal', JSON.stringify(entries));
+            journalInput.value = '';
+            renderJournalEntries();
+        });
+
+        clearJournalBtn.addEventListener('click', () => {
+            if (confirm('Usunąć całą historię zapisanych wpisów na tym urządzeniu?')) {
+                localStorage.removeItem('facet_ogarniecie_journal');
+                renderJournalEntries();
+            }
+        });
+
+        window.removeJournalEntry = function(index) {
+            const entries = JSON.parse(localStorage.getItem('facet_ogarniecie_journal') || '[]');
+            entries.splice(index, 1);
+            localStorage.setItem('facet_ogarniecie_journal', JSON.stringify(entries));
+            renderJournalEntries();
+        };
+
+        // Load entries on start
+        renderJournalEntries();
+
+        // --- FORMULARZ KRĘGU LOGIC ---
+        const circleForm = document.getElementById('circle-form');
+        const circleSuccessMsg = document.getElementById('circle-success-msg');
+
+        circleForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            circleSuccessMsg.classList.remove('hidden');
+            circleForm.reset();
+            setTimeout(() => {
+                circleSuccessMsg.classList.add('hidden');
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
